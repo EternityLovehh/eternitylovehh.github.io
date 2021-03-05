@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>jvm相关 | 王大人的博客</title><meta name="keywords" content="java"><meta name="author" content="王大人"><meta name="copyright" content="王大人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="jvm即Java虚拟机，是用于运行Java程序编译后的字节码文件。java程序经过一次编译之后，将java代码编译为字节码也就是.class文件，然后不同的操作系统依靠不同的java虚拟机解释器进行解释，最后转换成不同平台的机器码。 jvm内存结构java程序执行过程中，内存会被划分为不同的数据区域，各个区域有各自的用途  程序计数器当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm相关">
+<meta property="og:url" content="https://eternitylovehh.github.io/2021/03/04/jvm%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="王大人的博客">
+<meta property="og:description" content="jvm即Java虚拟机，是用于运行Java程序编译后的字节码文件。java程序经过一次编译之后，将java代码编译为字节码也就是.class文件，然后不同的操作系统依靠不同的java虚拟机解释器进行解释，最后转换成不同平台的机器码。 jvm内存结构java程序执行过程中，内存会被划分为不同的数据区域，各个区域有各自的用途  程序计数器当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-03-04T10:07:19.000Z">
+<meta property="article:modified_time" content="2021-03-05T10:02:12.111Z">
+<meta property="article:author" content="王大人">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://eternitylovehh.github.io/2021/03/04/jvm%E7%9B%B8%E5%85%B3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-05 18:02:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><style type="text/css">#toggle-sidebar {left:100px}</style><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.woyaogexing.com%2F2018%2F06%2F26%2Fc603ba9d2f8b4b4994bf78d56eb690be%21400x400.jpeg&amp;refer=http%3A%2F%2Fimg2.woyaogexing.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1617348828&amp;t=b43ce508f3bc97e739e3fecd803759ff" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">王大人的博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">jvm相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-04T10:07:19.000Z" title="发表于 2021-03-04 18:07:19">2021-03-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-05T10:02:12.111Z" title="更新于 2021-03-05 18:02:12">2021-03-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>jvm即Java虚拟机，是用于运行Java程序编译后的字节码文件。java程序经过一次编译之后，将java代码编译为字节码也就是.class文件，然后不同的操作系统依靠不同的java虚拟机解释器进行解释，最后转换成不同平台的机器码。</p>
+<h3 id="jvm内存结构"><a href="#jvm内存结构" class="headerlink" title="jvm内存结构"></a>jvm内存结构</h3><p>java程序执行过程中，内存会被划分为不同的数据区域，各个区域有各自的用途</p>
+<p><img src="https://pics2.baidu.com/feed/42a98226cffc1e172f8eb8b46449db05728de965.jpeg?token=d26e98ef935d94a5482189ed23f31a00&s=5AA83462038F414B44FC31CE0000A0B1" alt="img"></p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有</p>
+<h4 id="java虚拟栈"><a href="#java虚拟栈" class="headerlink" title="java虚拟栈"></a>java虚拟栈</h4><p>存放基本数据类型、对象的引用、方法出口等，线程私有，生命周期和线程相同，线程私有</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>本地方法栈和Java虚拟机栈非常类似，他们最大的不同在于，java虚拟机栈用于java方法的调用，而本地方法栈用于Native方法的调用，线程私有</p>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>java堆是所有线程共享的一块内存区域，在虚拟机启动时创建，java内存最大的一块，所有对象实例、数组都存在放java堆，GC回收的地方，线程共享</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>存放已被加载的类信息、常量、静态变量、即时编译的代码数据等，jdk8以前用“永久代”来实现方法区，可以用 -XX:MaxPermSize 来设置永久代大小，有内存溢出的风险，所以jdk8以后用元空间实现方法区。元空间与永久代之间的区别是，永久代是堆的一部分，和新生代，老年代的地址是连续的，元空间不在虚拟机中，而属于本地内存，默认情况下，元空间的大小仅受本地内存限制。</p>
+<h3 id="jvm内存模型"><a href="#jvm内存模型" class="headerlink" title="jvm内存模型"></a>jvm内存模型</h3><p>java堆和方法区是多个线程共享的数据区域，多个线程可以操作对堆和方法区中的同一个数据，java线程间通过共享内存进行通信</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/845143-171be58948f37fcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/423/format/webp" alt="img"></p>
+<p>java内存模型简称JMM，它不像jvm内存结构一样真实存在，而是一个抽象的概念。java多线程对共享内存进行操作的时候会存在一些如可见性，原子性和顺序性的问题，JMM是围绕着多线程通信及相关的一些特性而建立的模型。JMM定义了一些语法集，这些语法集映射到java语言的volatile、synchronized等关键字。</p>
+<h4 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h4><p>jvm的类加载机制，规定一个类有且只有一个类加载器对它进行加载。</p>
+<p>虚拟机把类的数据从class文件加载到内存，并对数据进行校验，转换解析和初始化，最终形成可以被虚拟机直接使用的java类型的过程，整个生命周期包括七个阶段</p>
+<p><img src="https://img-blog.csdn.net/20180511132622740?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2E3NDUyMzM3MDA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>虚拟机默认提供了三种类加载器，启动类加载器、扩展类加载器、应用程序类加载器。</p>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>双亲委派模型要求除了顶层的启动类加载器外，其余类加载器都应该有自己的父类加载器（类加载器之间的父子关系不是以继承的关系实现，而是使用组合关系来复用父加载器的代码）</p>
+<h4 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1. 工作原理"></a>1. 工作原理</h4><p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层级的类加载器都是如此，因此所有请求都会被传到最顶层的启动类加载器中，只有当父类加载器反馈自己无法完成这个加载请求时，子加载器才会尝试自己去加载。</p>
+<h4 id="2-优点"><a href="#2-优点" class="headerlink" title="2. 优点"></a>2. 优点</h4><p>（1）使java类跟类加载器一起具备了一种带有优先级的层次关系</p>
+<p>（2）避免类的重复加载，当父类加载器已经加载了该类时，子类加载器就没必要再加载一次</p>
+<p>（3）解决各个类加载器的基础类统一问题，越基础的类由越上层的加载器进行加载避免java核心api中的类被随意替换</p>
+<h3 id="jvm垃圾回收机制"><a href="#jvm垃圾回收机制" class="headerlink" title="jvm垃圾回收机制"></a>jvm垃圾回收机制</h3><p>垃圾回收机制是回收堆内存中的对象，栈中的对象是不需要回收机制去考虑的，判断一个对象是否应该被回收，要去判断对象是否存在引用关系</p>
+<h4 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h4><p>此对象有一个引用，即增加一个计数，删除一个引用则减少一个计数，垃圾回收时，只需要收集计数为0的对象。无法处理循环引用问题</p>
+<h4 id="可达性分析"><a href="#可达性分析" class="headerlink" title="可达性分析"></a>可达性分析</h4><p>可达性分析的基本思路是通过一系列可以作为root的对象作为起始点，从这些节点开始向下搜索，当一个对象到root节点没有任何引用连接时，则证明此对象是可以被回收的</p>
+<h3 id="jvm垃圾回收算法"><a href="#jvm垃圾回收算法" class="headerlink" title="jvm垃圾回收算法"></a>jvm垃圾回收算法</h3><h4 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h4><p>分为两个阶段：标记阶段和清除阶段，标记阶段找出所有需要被回收的对象并作出标记，清除阶段是回收被标记的对象所占用的空间。容易产生内存碎片</p>
+<h4 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h4><p>首先将可用内存空间按照大小平均分为两部分，在使用时只使用其中的一部分，另一部分不使用。当其中一部分满了之后，触发收集机制，将还存活的对象复制到另一块内存上面，然后把当前内存的空间一次清理掉，这样就不容易出现内存碎片了。</p>
+<h4 id="标记整理算法"><a href="#标记整理算法" class="headerlink" title="标记整理算法"></a>标记整理算法</h4><p>该算法结合了标记清除和复制算法，分为两个阶段，第一阶段，先标记出待回收的对象，第二阶段，不是直接清除可回收对象，而是将存活对象都向一段移动，然后清理掉回收的内存。</p>
+<h4 id="分代回收算法"><a href="#分代回收算法" class="headerlink" title="分代回收算法"></a>分代回收算法</h4><p>根据对象存活的生命周期将内存划分为若干个不同的区域，不同生命周期对象放在不同代上，对于不同代采用最适合的算法进行垃圾回收。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王大人</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://eternitylovehh.github.io/2021/03/04/jvm%E7%9B%B8%E5%85%B3/">https://eternitylovehh.github.io/2021/03/04/jvm%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://eternitylovehh.github.io" target="_blank">王大人的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/03/02/java%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><img class="next-cover" src="https://t7.baidu.com/it/u=4162611394,4275913936&amp;fm=193&amp;f=GIF" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">java多线程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/03/02/java多线程/" title="java多线程"><img class="cover" src="https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-02</div><div class="title">java多线程</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.woyaogexing.com%2F2018%2F06%2F26%2Fc603ba9d2f8b4b4994bf78d56eb690be%21400x400.jpeg&amp;refer=http%3A%2F%2Fimg2.woyaogexing.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1617348828&amp;t=b43ce508f3bc97e739e3fecd803759ff" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">王大人</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">jvm内存结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">程序计数器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#java%E8%99%9A%E6%8B%9F%E6%A0%88"><span class="toc-number">1.2.</span> <span class="toc-text">java虚拟栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88"><span class="toc-number">1.3.</span> <span class="toc-text">本地方法栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">1.4.</span> <span class="toc-text">堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="toc-number">1.5.</span> <span class="toc-text">方法区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">jvm内存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.</span> <span class="toc-text">类加载机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">双亲委派模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">1. 工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BC%98%E7%82%B9"><span class="toc-number">4.2.</span> <span class="toc-text">2. 优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">5.</span> <span class="toc-text">jvm垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">引用计数法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">5.2.</span> <span class="toc-text">可达性分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">jvm垃圾回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">标记清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">6.2.</span> <span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">标记整理算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">6.4.</span> <span class="toc-text">分代回收算法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/04/jvm%E7%9B%B8%E5%85%B3/" title="jvm相关"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="jvm相关"/></a><div class="content"><a class="title" href="/2021/03/04/jvm%E7%9B%B8%E5%85%B3/" title="jvm相关">jvm相关</a><time datetime="2021-03-04T10:07:19.000Z" title="发表于 2021-03-04 18:07:19">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/02/java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="java多线程"><img src="https://t7.baidu.com/it/u=4162611394,4275913936&amp;fm=193&amp;f=GIF" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java多线程"/></a><div class="content"><a class="title" href="/2021/03/02/java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="java多线程">java多线程</a><time datetime="2021-03-02T07:55:26.000Z" title="发表于 2021-03-02 15:55:26">2021-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/01/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" title="Activity启动流程"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Activity启动流程"/></a><div class="content"><a class="title" href="/2021/03/01/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" title="Activity启动流程">Activity启动流程</a><time datetime="2021-03-01T10:38:48.000Z" title="发表于 2021-03-01 18:38:48">2021-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/26/view%E7%9A%84%E7%BB%98%E5%88%B6/" title="事件分发机制和冲突处理"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="事件分发机制和冲突处理"/></a><div class="content"><a class="title" href="/2021/02/26/view%E7%9A%84%E7%BB%98%E5%88%B6/" title="事件分发机制和冲突处理">事件分发机制和冲突处理</a><time datetime="2021-02-26T07:02:05.000Z" title="发表于 2021-02-26 15:02:05">2021-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/25/binder%E6%9C%BA%E5%88%B6/" title="binder通信机制"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="binder通信机制"/></a><div class="content"><a class="title" href="/2021/02/25/binder%E6%9C%BA%E5%88%B6/" title="binder通信机制">binder通信机制</a><time datetime="2021-02-25T05:44:20.000Z" title="发表于 2021-02-25 13:44:20">2021-02-25</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 王大人</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="5172410111" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
