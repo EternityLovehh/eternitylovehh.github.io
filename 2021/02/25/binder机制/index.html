@@ -149,7 +149,7 @@
 <li><p>安全性更高 ，binder机制的uid/pid 是由binder机制本身在内核空间添加身份标识，安全性高，并且binder机制可以建立私有通道。</p>
 </li>
 </ol>
-<h3 id="binder通信机制流程"><a href="#binder通信机制流程" class="headerlink" title="binder通信机制流程"></a>binder通信机制流程</h3><p><img src="E:\github\myblog\source\images\20160607091016312.jpg"></p>
+<h3 id="binder通信机制流程"><a href="#binder通信机制流程" class="headerlink" title="binder通信机制流程"></a>binder通信机制流程</h3><p><img src="/2021/02/25/binder%E6%9C%BA%E5%88%B6/github\myblog\source\images\20160607091016312.jpg"></p>
 <p>从图中可以看到，binder的通信框架包含了四个重要的角色： Server， Client， ServerManager和binder驱动；client 和server是存在于用户空间，它们之间的通信是由binder驱动在内核空间实现的，而ServerManager作为守护进程也存在于用户空间，处理客户端请求和管理所有的服务项， binder驱动工作在内核中，负责进程间通信的建立。</p>
 <h4 id="binder通信原理"><a href="#binder通信原理" class="headerlink" title="binder通信原理"></a>binder通信原理</h4><p>binder通信只需要copy一次数据的原理是使用了内存映射 mmap() </p>
 <h5 id="内存映射"><a href="#内存映射" class="headerlink" title="内存映射"></a>内存映射</h5><p>1.首先binder驱动在内核空间创建一个数据接收缓存区，</p>
@@ -157,7 +157,7 @@
 <p>3.实现内存映射，内核缓存区和接收进程的用户空间地址都映射到同一个接收缓存区</p>
 <p>4.发送进程通过系统调用copy_from_user()将数据copy到内核中的内核缓存区</p>
 <p>5.由于内核缓存区和接收进程的用户空间存在内存映射，因此也就相当于把数据发送到了接收进程的用户空间。</p>
-<p><img src="E:\github\myblog\source\images\960a304e251f95cab5a46f4f25c7df3b650952c8.jpeg" alt="img"></p>
+<p><img src="/2021/02/25/binder%E6%9C%BA%E5%88%B6/github\myblog\source\images\960a304e251f95cab5a46f4f25c7df3b650952c8.jpeg" alt="img"></p>
 <h5 id="binder通信过程"><a href="#binder通信过程" class="headerlink" title="binder通信过程"></a>binder通信过程</h5><p>Client要和Server通信，它就是通过保存一个Server对象的Binder引用，再通过该Binder引用在内核中找到对应的Binder实体，进而找到Server对象，然后将通信内容发送给Server对象。</p>
 <p>   1.Server首先会向binder驱动发起注册请求，而binder驱动在收到请求之后会新建一个该server对应的      binder实体和binder的引用，然后将server的名字和binder的引用打包传递给ServerManager进程</p>
 <ol start="2">

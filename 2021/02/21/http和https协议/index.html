@@ -152,13 +152,13 @@
 <li>对服务器造成的压力不同，每个用户都会产生session，当并发量大的时候，服务器压力比较大</li>
 </ol>
 <h3 id="tcp-三次握手"><a href="#tcp-三次握手" class="headerlink" title="tcp 三次握手"></a>tcp 三次握手</h3><p>建立tcp连接，需要客户端和服务端总共发送3个包 确认连接的建立</p>
-<p><img src="E:\github\myblog\source\images\20180719110828114" alt="这里写图片描述"></p>
+<p><img src="/2021/02/21/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/github\myblog\source\images\20180719110828114" alt="这里写图片描述"></p>
 <ol>
 <li>客户端发数据包给服务器，并进入SENT状态，等待服务器确认</li>
 <li>服务器收到客户端请求后，反馈给客户端确认信息ACK，同时发送SYN包</li>
 <li>客户端收到服务端返回的数据ACK+SYN后，向服务器发送ACK表示确认收到，完成tcp的连接</li>
 </ol>
-<h3 id="tcp-四次挥手断开连接"><a href="#tcp-四次挥手断开连接" class="headerlink" title="tcp 四次挥手断开连接"></a>tcp 四次挥手断开连接</h3><p><img src="E:\github\myblog\source\images\20180719110841774" alt="这里写图片描述"></p>
+<h3 id="tcp-四次挥手断开连接"><a href="#tcp-四次挥手断开连接" class="headerlink" title="tcp 四次挥手断开连接"></a>tcp 四次挥手断开连接</h3><p><img src="/2021/02/21/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/github\myblog\source\images\20180719110841774" alt="这里写图片描述"></p>
 <ol>
 <li>客户端发送一个FIN，用来关闭客户端到服务器数据传输，客户端进去wait状态</li>
 <li>服务器收到FIN后，发送一个ACK给客户端，确认收到，服务器进入CLOSE_WAIT状态</li>
