@@ -1,11 +1,13 @@
 title: HashMap 原理
 ---
 HashMap 实际上是数组+链表组合构成的数据结构
-![在这里插入图片描述](E:\github\myblog\source\images\20190416160043844.png)
+![](https://img-blog.csdnimg.cn/20190416160043844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6Y2htbQ==,size_16,color_FFFFFF,t_70)
 
 **hash函数的原理**
     java中任何对象都有hash值，计算key的hash值， 对key的hashcode进行移位，异或运算（相同为0，不同为1），然后通过hash函数计算的index找到数组的位置（求模运算 hash % length, hash&length - 1）。流程如下：
-**![加粗样式](E:\github\myblog\source\images\20190416161656243.png)
+
+![](https://img-blog.csdnimg.cn/20190416161656243.png)
+
 hash函数作用是为了保证最终获取的存储位置尽量分布均匀。
 
 **put方法原理**

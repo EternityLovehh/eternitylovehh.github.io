@@ -13,7 +13,7 @@ jvm即Java虚拟机，是用于运行Java程序编译后的字节码文件。jav
 
 java程序执行过程中，内存会被划分为不同的数据区域，各个区域有各自的用途
 
-![img](E:\github\myblog\source\images\42a98226cffc1e172f8eb8b46449db05728de965.jpeg)
+![img](https://pics7.baidu.com/feed/1c950a7b02087bf4600fcdb16c143b2a13dfcfd1.jpeg?token=1b629473555dd856ff2d9ca3301b37ea)
 
 #### 程序计数器
 
@@ -39,7 +39,7 @@ java堆是所有线程共享的一块内存区域，在虚拟机启动时创建�
 
 java堆和方法区是多个线程共享的数据区域，多个线程可以操作对堆和方法区中的同一个数据，java线程间通过共享内存进行通信
 
-![img](images/845143-171be58948f37fcc.png)
+![img](https://upload-images.jianshu.io/upload_images/845143-171be58948f37fcc.png?imageMogr2/auto-orient/strip|imageView2/2/w/423/format/webp)
 
 java内存模型简称JMM，它不像jvm内存结构一样真实存在，而是一个抽象的概念。java多线程对共享内存进行操作的时候会存在一些如可见性，原子性和顺序性的问题，JMM是围绕着多线程通信及相关的一些特性而建立的模型。JMM定义了一些语法集，这些语法集映射到java语言的volatile、synchronized等关键字。
 
@@ -49,7 +49,7 @@ jvm的类加载机制，规定一个类有且只有一个类加载器对它进�
 
 虚拟机把类的数据从class文件加载到内存，并对数据进行校验，转换解析和初始化，最终形成可以被虚拟机直接使用的java类型的过程，整个生命周期包括七个阶段
 
-![img](images/20180511132622740)
+![img](E:\github\myblog\source\images\1900685-5b9f351d3bc5b208.png)
 
 ### 类加载器
 

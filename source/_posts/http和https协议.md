@@ -22,7 +22,7 @@ tags: 网络
 
 建立tcp连接，需要客户端和服务端总共发送3个包 确认连接的建立
 
-![这里写图片描述](E:\github\myblog\source\images\20180719110828114)
+![](https://img-blog.csdn.net/20180719110828114?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW9taW5nMTAwMDAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 1. 客户端发数据包给服务器，并进入SENT状态，等待服务器确认
 2. 服务器收到客户端请求后，反馈给客户端确认信息ACK，同时发送SYN包
@@ -30,7 +30,7 @@ tags: 网络
 
 ### tcp 四次挥手断开连接
 
-![这里写图片描述](E:\github\myblog\source\images\20180719110841774)
+![](https://img-blog.csdn.net/20180719110841774?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW9taW5nMTAwMDAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 1. 客户端发送一个FIN，用来关闭客户端到服务器数据传输，客户端进去wait状态
 2. 服务器收到FIN后，发送一个ACK给客户端，确认收到，服务器进入CLOSE_WAIT状态

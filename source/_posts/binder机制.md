@@ -22,7 +22,7 @@ tags:
 
 ### binder通信机制流程
 
-![](E:\github\myblog\source\images\20160607091016312.jpg)
+![img](https://img-blog.csdn.net/20160423105932970)
 
 从图中可以看到，binder的通信框架包含了四个重要的角色： Server， Client， ServerManager和binder驱动；client 和server是存在于用户空间，它们之间的通信是由binder驱动在内核空间实现的，而ServerManager作为守护进程也存在于用户空间，处理客户端请求和管理所有的服务项， binder驱动工作在内核中，负责进程间通信的建立。
 
@@ -42,7 +42,7 @@ binder通信只需要copy一次数据的原理是使用了内存映射 mmap()
 
 5.由于内核缓存区和接收进程的用户空间存在内存映射，因此也就相当于把数据发送到了接收进程的用户空间。
 
-![img](E:\github\myblog\source\images\960a304e251f95cab5a46f4f25c7df3b650952c8.jpeg)
+![](https://img-blog.csdnimg.cn/20190211134541442.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d3dzg1MTkwMzMwNw==,size_16,color_FFFFFF,t_70)
 
 ##### binder通信过程
 

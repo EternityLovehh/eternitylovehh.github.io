@@ -11,7 +11,7 @@ Activity启动流程分为两种：
 
 ### 具体流程
 
-![](images/20190806171917409.png)
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy91bnpOZ2FIaWN1dWc2a2Zsc3dZWkZYNmRRZ24xbFNSNEgwM3dMUExEdjFEeFRaSU5SVFlpYzVjcllXaWIyellLeDZOZGliR2htUDhQdllmNkNWOXBPYlNPTVEvNjQw?x-oss-process=image/format,png)
 
 1. Launcher通知AMS要启动Activity
 

@@ -10,7 +10,7 @@ tags: Android
 
 事件的优先级onTouchListener->onTouchEvent->onClicklistener
 
-![](E:\github\myblog\source\images\896629-20171007002430630-1646060778.png)
+![](https://upload-images.jianshu.io/upload_images/966283-b9cb65aceea9219b.png?imageMogr2/auto-orient/strip|imageView2/2/w/885/format/webp)
 
 #### ViewGroup
 
