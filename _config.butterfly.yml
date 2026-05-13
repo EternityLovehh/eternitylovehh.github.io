@@ -868,7 +868,7 @@ inject:
     - '<div class="aplayer no-destroy" data-id="5172410111" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div>'
     - '<script src="/js/lib/three.min.js"></script>'
     - '<script src="/js/lib/vanta.birds.min.js"></script>'
-    - '<script>function _initVantaBirds(){if(typeof VANTA==="undefined")return setTimeout(_initVantaBirds,150);var el=document.getElementById("page-header");if(!el)return;if(window._vantaBirds)try{window._vantaBirds.destroy()}catch(e){}window._vantaBirds=VANTA.BIRDS({el:"#page-header",mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,scale:1,scaleMobile:1,backgroundColor:0x0a0a23,color1:0x67d3f8,color2:0xff6ec7,birdSize:1.2,wingSpan:28,separation:50,alignment:25,cohesion:18,quantity:4})}_initVantaBirds();document.addEventListener("pjax:complete",_initVantaBirds);</script>'
+    - '<script>function _initVantaBirds(){if(typeof VANTA==="undefined")return setTimeout(_initVantaBirds,150);var el=document.getElementById("page-header");if(!el)return;if(window._vantaBirds)try{window._vantaBirds.destroy()}catch(e){}window._vantaBirds=VANTA.BIRDS({el:"#page-header",mouseControls:true,touchControls:true,gyroControls:false,minHeight:200,minWidth:200,scale:1,scaleMobile:1,backgroundColor:0x7192f,backgroundAlpha:1,color1:0xff0000,color2:0xd1ff,colorMode:"varianceGradient",quantity:5,birdSize:1,wingSpan:30,speedLimit:5,separation:20,alignment:20,cohesion:20})}_initVantaBirds();document.addEventListener("pjax:complete",_initVantaBirds);</script>'
 
 # CDN
 # Don't modify the following settings unless you know how they work
