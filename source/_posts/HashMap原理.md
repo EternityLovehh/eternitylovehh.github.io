@@ -1,4 +1,5 @@
 title: HashMap 原理
+cover: /images/posts/hashmap-1.png
 ---
 HashMap 实际上是数组+链表组合构成的数据结构
 ![](/images/posts/hashmap-1.png)

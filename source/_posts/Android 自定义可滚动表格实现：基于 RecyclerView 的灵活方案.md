@@ -6,6 +6,7 @@ categories:
 tags:
   - android
   - kotlin
+cover: /images/posts/csdn-149429425-1.png
 ---
 在 Android 开发中，表格展示是常见需求，但原生控件往往难以满足复杂场景（如固定行列、滚动同步、灵活布局等）。本文将基于 RecyclerView 实现一个可横向 / 纵向滚动、支持固定首行首列的自定义表格，并解析核心实现思路。
 

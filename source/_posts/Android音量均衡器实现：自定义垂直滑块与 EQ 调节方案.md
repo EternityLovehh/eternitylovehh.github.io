@@ -6,6 +6,7 @@ categories:
 tags:
   - android
   - java
+cover: /images/posts/csdn-149329660-1.png
 ---
 在音频处理应用中，均衡器是一个核心功能，它允许用户调整不同频段的增益来优化音频输出。本文将详细介绍如何在Android中实现一个美观且功能完整的垂直均衡器控件。
 

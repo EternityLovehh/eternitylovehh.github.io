@@ -180,9 +180,10 @@ def download_image(url: str, dest_basename: str) -> Path:
     return target
 
 
-def rewrite_images(body, slug_prefix: str):
-    """Download every external <img> and rewrite src to a local path."""
+def rewrite_images(body, slug_prefix: str) -> str | None:
+    """Download every external <img>, rewrite src to local path, return first local path."""
     idx = 0
+    first_local: str | None = None
     for img in body.find_all("img"):
         src = img.get("src") or img.get("data-src") or img.get("data-original")
         if not src or not src.startswith(("http://", "https://")):
@@ -190,13 +191,17 @@ def rewrite_images(body, slug_prefix: str):
         idx += 1
         try:
             target = download_image(src, f"{slug_prefix}-{idx}")
-            img["src"] = f"/images/posts/{target.name}"
+            local_path = f"/images/posts/{target.name}"
+            img["src"] = local_path
             for attr in ("data-src", "data-original", "srcset"):
                 if img.has_attr(attr):
                     del img[attr]
+            if first_local is None:
+                first_local = local_path
             print(f"    img: {src[:70]}{'…' if len(src) > 70 else ''}  ->  {target.name}")
         except Exception as e:
             print(f"    [warn] image fetch failed: {src[:80]}  ({e})", file=sys.stderr)
+    return first_local
 
 
 def code_language(el) -> str:
@@ -229,6 +234,8 @@ def build_front_matter(meta: dict) -> str:
         lines.append("tags:")
         for t in meta["tags"]:
             lines.append(f"  - {yaml_escape(t)}")
+    if meta.get("cover"):
+        lines.append(f"cover: {meta['cover']}")
     lines += ["---", ""]
     return "\n".join(lines)
 
@@ -244,7 +251,7 @@ def import_post(post_url: str, article_id: str, overwrite: bool, post_time: str 
         print(f"[skip] exists: {fname.name}  (--overwrite to replace)")
         return False
 
-    rewrite_images(meta["body"], slug_prefix=f"csdn-{article_id}")
+    meta["cover"] = rewrite_images(meta["body"], slug_prefix=f"csdn-{article_id}")
 
     body_md = html_to_md(
         str(meta["body"]),

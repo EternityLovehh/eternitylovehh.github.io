@@ -4,7 +4,7 @@ date: 2021-03-04 18:07:19
 tags: java
 categories:
 top_img:
-cover:
+cover: /images/posts/jvm-1.jpeg
 ---
 
 jvm即Java虚拟机，是用于运行Java程序编译后的字节码文件。java程序经过一次编译之后，将java代码编译为字节码也就是.class文件，然后不同的操作系统依靠不同的java虚拟机解释器进行解释，最后转换成不同平台的机器码。

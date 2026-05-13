@@ -3,6 +3,7 @@ title: tablayout与scrollview的滑动联动效果实现
 date: 2018-04-09 13:57:37
 categories:
   - android
+cover: /images/posts/csdn-79865518-1.gif
 ---
 **\*tablayout与scrollview的滑动联动效果实现**   
 本次要实现的效果是点击标题栏tablayout的tab，下方的scrollview布局滚动到指定的位置，当下面的布局上滑到一定位置时，tab的文字颜色变化。效果图如下:   

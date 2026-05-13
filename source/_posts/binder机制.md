@@ -2,6 +2,7 @@
 title: binder通信机制
 date: 2021-02-25 13:44:20
 tags:
+cover: /images/posts/binder-1.png
 ---
 
 ### 安卓为什么要使用binder通信？

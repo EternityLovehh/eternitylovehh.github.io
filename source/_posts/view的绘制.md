@@ -2,6 +2,7 @@
 title: 事件分发机制和冲突处理
 date: 2021-02-26 15:02:05
 tags: Android
+cover: /images/posts/view-draw-1.webp
 ---
 
 ### Android 事件的传递和分发机制

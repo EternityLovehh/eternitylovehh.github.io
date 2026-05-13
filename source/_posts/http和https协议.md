@@ -2,6 +2,7 @@
 title: http和https协议
 date: 2021-02-21 19:03:41
 tags: 网络
+cover: /images/posts/http-https-1.png
 ---
 
 ### get和post的区别

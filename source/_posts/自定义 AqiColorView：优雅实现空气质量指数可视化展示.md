@@ -4,6 +4,7 @@ date: 2025-07-11 13:40:49
 tags:
   - android
   - kotlin
+cover: /images/posts/csdn-149269671-1.png
 ---
 Android 仿IOS 天气 AQI彩色进度条实现  
 ![在这首先z里插入图片描述](/images/posts/csdn-149269671-1.png)

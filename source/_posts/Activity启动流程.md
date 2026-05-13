@@ -2,6 +2,7 @@
 title: Activity启动流程
 date: 2021-03-01 18:38:48
 tags: Android
+cover: /images/posts/activity-launch-1.png
 ---
 
 Activity启动流程分为两种：

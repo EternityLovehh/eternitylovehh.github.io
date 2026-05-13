@@ -8,6 +8,7 @@ tags:
   - 手机
   - 内存
   - sdk
+cover: /images/posts/csdn-72843868-1.png
 ---
 **1 获取外置SD卡的路径**   
  由于现在大多数手机都是带有内存的，原本获取外置SD卡路径的方法`Environment.getExternalStorageDirectory()` 获取得到的是手机自身内存的根目录。那么我们要怎么来获取到外置SD卡的路径，首先需要判断是否挂载了sdk，同样的Environment.getExternalStorageState()这个方法判断的只是机身内存空间，需要额外写一个工具类进行判断。这里要用到的是java的反射机制，下面是代码：

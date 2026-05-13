@@ -2,7 +2,6 @@
 title: java多线程
 date: 2021-03-02 15:55:26
 tags: java
-cover: https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF
 ---
 
 ### Thread和Runnable
