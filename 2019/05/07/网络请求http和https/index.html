@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>网络请求http和https | 王大人的博客</title><meta name="keywords" content="安卓学习记录"><meta name="author" content="王大人"><meta name="copyright" content="王大人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="http是基于TCP&#x2F;IP协议的一种传输协议tcp 三次握手：客户端发数据给服务器服务器收到数据反馈到客户端表示收到客户端收到服务端返回的数据，发送确认收到 tcp 四次挥手断开连接在客户端给服务端发送了断开请求后， 客户端还可以继续给服务端发送请求，但服务端不再给客户端发送消息 socket 套接字是对Tcp&#x2F;Ip协议的封装 http的工作流程第一步：地址解析，从url中解析协议名称，主机名，端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络请求http和https">
+<meta property="og:url" content="https://eternitylovehh.github.io/2019/05/07/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82http%E5%92%8Chttps/index.html">
+<meta property="og:site_name" content="王大人的博客">
+<meta property="og:description" content="http是基于TCP&#x2F;IP协议的一种传输协议tcp 三次握手：客户端发数据给服务器服务器收到数据反馈到客户端表示收到客户端收到服务端返回的数据，发送确认收到 tcp 四次挥手断开连接在客户端给服务端发送了断开请求后， 客户端还可以继续给服务端发送请求，但服务端不再给客户端发送消息 socket 套接字是对Tcp&#x2F;Ip协议的封装 http的工作流程第一步：地址解析，从url中解析协议名称，主机名，端">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2019-05-07T07:18:02.000Z">
+<meta property="article:modified_time" content="2026-05-13T03:05:52.073Z">
+<meta property="article:author" content="王大人">
+<meta property="article:tag" content="安卓学习记录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://eternitylovehh.github.io/2019/05/07/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82http%E5%92%8Chttps/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-05-13 11:05:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">王大人的博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">网络请求http和https</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-05-07T07:18:02.000Z" title="发表于 2019-05-07 15:18:02">2019-05-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-13T03:05:52.073Z" title="更新于 2026-05-13 11:05:52">2026-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/android/">android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>http是基于TCP/IP协议的一种传输协议<br>tcp 三次握手：<br>客户端发数据给服务器<br>服务器收到数据反馈到客户端表示收到<br>客户端收到服务端返回的数据，发送确认收到</p>
+<p>tcp 四次挥手断开连接<br>在客户端给服务端发送了断开请求后， 客户端还可以继续给服务端发送请求，但服务端不再给客户端发送消息</p>
+<p>socket 套接字是对Tcp/Ip协议的封装</p>
+<p>http的工作流程<br>第一步：地址解析，从url中解析协议名称，主机名，端口号和对应的页面地址。<br>第二步：封装http的请求数据包：这一步主要是封装自己的信息，比如在post请求时，我们会塞进一个data数据。<br>第三步：封装tcp包，建立连接：因为是基于tcp的协议，网络连接是tcp来完成的，必然要封装成tcp包，然后tcp再做自己工作，比如封装ip包，一层层往下传。<br>第四步：发送请求：数据整好了，连接也完事了，那就发送action了。<br>第五步：服务端响应：接受到请求，然后给出响应。<br>第六步:服务端关闭tcp的连接：一次通信完成之后，若conection的设置不是keep-live的话，服务端会自动关闭tcp的连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * http内部socket实现</span><br><span class="line">    */</span><br><span class="line">   public void testHttp()&#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           URL url = new URL(&quot;http://www.baidu.com&quot;);</span><br><span class="line">           StringBuffer stringBuffer = new StringBuffer();</span><br><span class="line">           //请求行</span><br><span class="line">           stringBuffer.append(&quot;GET  &quot;);</span><br><span class="line">           stringBuffer.append(url.getFile());</span><br><span class="line">           stringBuffer.append(&quot; &quot;);</span><br><span class="line">           stringBuffer.append(&quot;HTTP/1.1&quot;);</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line">           //请求头</span><br><span class="line">           stringBuffer.append(&quot;Host: &quot;);</span><br><span class="line">           stringBuffer.append(url.getHost());</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line">           //空行</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line"></span><br><span class="line">           final Socket socket = new Socket();</span><br><span class="line">           //dns解析，将host解析为ip</span><br><span class="line">           socket.connect(new InetSocketAddress(url.getHost(), url.getPort()));</span><br><span class="line"></span><br><span class="line">           //读取http响应</span><br><span class="line">           final BufferedReader br = new BufferedReader(new</span><br><span class="line">                   InputStreamReader(</span><br><span class="line">                   socket.getInputStream(),&quot;utf-8&quot;));</span><br><span class="line">           BufferedWriter bf = new BufferedWriter((new OutputStreamWriter(</span><br><span class="line">                   socket.getOutputStream())));</span><br><span class="line">           new Thread(new Runnable() &#123;</span><br><span class="line">               @Override</span><br><span class="line">               public void run() &#123;</span><br><span class="line">                   try &#123;</span><br><span class="line">                    String line = null;  </span><br><span class="line">       			 while((line = br.readLine())!= null)  &#123;  </span><br><span class="line">         				  System.out.println(line);  </span><br><span class="line">      				 &#125;  </span><br><span class="line">                   &#125; catch (IOException e) &#123;</span><br><span class="line">                       e.printStackTrace();</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;).start();</span><br><span class="line"></span><br><span class="line">           bf.write(stringBuffer.toString());</span><br><span class="line">           bf.flush();</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>HTTPS协议 = HTTP协议 + SSL/TLS协议，除了tcp/ip层要进行握手，ssl层也要进行握手进行加密解密。https同时使用了对称加密和非对称加密，对称加密的过程需要客户端的一个密钥，为了确保能把该密钥安全的传输到服务器端，采用非对称加密对该密钥进行加密传输。</p>
+<p>SSL的全称是Secure Sockets Layer，即安全套接层协议，是为网络通信提供安全及<br>数据完整性的一种安全协议。</p>
+<p>TLS的全称是Transport Layer Security，即安全传输层协议，最新版TLS（Transport Layer Security，传输层安全协议）是IETF（Internet Engineering Task Force，Internet工程任务组）制定的一种新的协议，它建立在SSL 3.0协议规范之上，是SSL 3.0的后续版本。在TLS与SSL3.0之间存在着显著的差别，主要是它们所支持的加密算法不同，所以TLS与SSL3.0不能互操作。虽然TLS与SSL3.0在加密算法上不同，但是在我们理解HTTPS的过程中，我们可以把SSL和TLS看做是同一个协议。</p>
+<p>https需要证书，使用系统默认信任的证书<br>如果是没有信任证书的请求，需要信任自定义的证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public void testHttps()&#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           URL url = new URL(&quot;http://www.baidu.com&quot;);</span><br><span class="line">           StringBuffer stringBuffer = new StringBuffer();</span><br><span class="line">           //请求行</span><br><span class="line">           stringBuffer.append(&quot;GET  &quot;);</span><br><span class="line">           stringBuffer.append(url.getFile());</span><br><span class="line">           stringBuffer.append(&quot; &quot;);</span><br><span class="line">           stringBuffer.append(&quot;HTTP/1.1&quot;);</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line">           //请求头</span><br><span class="line">           stringBuffer.append(&quot;Host: &quot;);</span><br><span class="line">           stringBuffer.append(url.getHost());</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line">           //空行</span><br><span class="line">           stringBuffer.append(&quot;\r\n&quot;);</span><br><span class="line">           //这里可以是：SSL、TLS</span><br><span class="line">           SSLContext context = SSLContext.getInstance(&quot;SSL&quot;);</span><br><span class="line">           Socket socket = (SSLSocketFactory.getDefault()).createSocket(url.getHost(), url.getPort());</span><br><span class="line">           //读取http响应</span><br><span class="line">           final BufferedReader br = new BufferedReader(new</span><br><span class="line">                   InputStreamReader(</span><br><span class="line">                   socket.getInputStream(),&quot;utf-8&quot;));</span><br><span class="line">           BufferedWriter bf = new BufferedWriter((new OutputStreamWriter(</span><br><span class="line">                   socket.getOutputStream())));</span><br><span class="line">           new Thread(new Runnable() &#123;</span><br><span class="line">               @Override</span><br><span class="line">               public void run() &#123;</span><br><span class="line">                   try &#123;</span><br><span class="line">                       br.readLine();</span><br><span class="line">                   &#125; catch (IOException e) &#123;</span><br><span class="line">                       e.printStackTrace();</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;).start();</span><br><span class="line"></span><br><span class="line">           bf.write(stringBuffer.toString());</span><br><span class="line">           bf.flush();</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>okhttp 需要设置hostnameVerferiy()方法验证域名，是为了防止中间人攻击（拦截网络通信，对数据进行篡改）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王大人</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://eternitylovehh.github.io/2019/05/07/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82http%E5%92%8Chttps/">https://eternitylovehh.github.io/2019/05/07/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82http%E5%92%8Chttps/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://eternitylovehh.github.io" target="_blank">王大人的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">安卓学习记录</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/21/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">http和https协议</div></div></a></div><div class="next-post pull-right"><a href="/2018/12/12/Rxjava2%20%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2%EF%BC%8C%E4%BB%A3%E6%9B%BFrunOnUiThread%E5%92%8Chandler/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Rxjava2 线程切换，代替runOnUiThread和handler</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">王大人</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/13/HashMap%E5%8E%9F%E7%90%86/" title="HashMap 原理"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HashMap 原理"/></a><div class="content"><a class="title" href="/2026/05/13/HashMap%E5%8E%9F%E7%90%86/" title="HashMap 原理">HashMap 原理</a><time datetime="2026-05-13T03:05:52.073Z" title="发表于 2026-05-13 11:05:52">2026-05-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/17/Android%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%AF%E6%BB%9A%E5%8A%A8%E8%A1%A8%E6%A0%BC%E5%AE%9E%E7%8E%B0%EF%BC%9A%E5%9F%BA%E4%BA%8E%20RecyclerView%20%E7%9A%84%E7%81%B5%E6%B4%BB%E6%96%B9%E6%A1%88/" title="Android 自定义可滚动表格实现：基于 RecyclerView 的灵活方案"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android 自定义可滚动表格实现：基于 RecyclerView 的灵活方案"/></a><div class="content"><a class="title" href="/2025/07/17/Android%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%AF%E6%BB%9A%E5%8A%A8%E8%A1%A8%E6%A0%BC%E5%AE%9E%E7%8E%B0%EF%BC%9A%E5%9F%BA%E4%BA%8E%20RecyclerView%20%E7%9A%84%E7%81%B5%E6%B4%BB%E6%96%B9%E6%A1%88/" title="Android 自定义可滚动表格实现：基于 RecyclerView 的灵活方案">Android 自定义可滚动表格实现：基于 RecyclerView 的灵活方案</a><time datetime="2025-07-17T12:58:19.000Z" title="发表于 2025-07-17 20:58:19">2025-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/15/Android%20%E8%87%AA%E5%AE%9A%E4%B9%89%20View%20%E5%AE%9E%E7%8E%B0%E6%B1%BD%E8%BD%A6%E7%81%AF%E5%85%89%E8%B7%9D%E7%A6%BB%E8%B0%83%E8%8A%82%E5%8A%A8%E7%94%BB/" title="Android 自定义 View 实现汽车灯光距离调节动画"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android 自定义 View 实现汽车灯光距离调节动画"/></a><div class="content"><a class="title" href="/2025/07/15/Android%20%E8%87%AA%E5%AE%9A%E4%B9%89%20View%20%E5%AE%9E%E7%8E%B0%E6%B1%BD%E8%BD%A6%E7%81%AF%E5%85%89%E8%B7%9D%E7%A6%BB%E8%B0%83%E8%8A%82%E5%8A%A8%E7%94%BB/" title="Android 自定义 View 实现汽车灯光距离调节动画">Android 自定义 View 实现汽车灯光距离调节动画</a><time datetime="2025-07-15T09:18:43.000Z" title="发表于 2025-07-15 17:18:43">2025-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/14/Android%E9%9F%B3%E9%87%8F%E5%9D%87%E8%A1%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9E%82%E7%9B%B4%E6%BB%91%E5%9D%97%E4%B8%8E%20EQ%20%E8%B0%83%E8%8A%82%E6%96%B9%E6%A1%88/" title="Android音量均衡器实现：自定义垂直滑块与 EQ 调节方案"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android音量均衡器实现：自定义垂直滑块与 EQ 调节方案"/></a><div class="content"><a class="title" href="/2025/07/14/Android%E9%9F%B3%E9%87%8F%E5%9D%87%E8%A1%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9E%82%E7%9B%B4%E6%BB%91%E5%9D%97%E4%B8%8E%20EQ%20%E8%B0%83%E8%8A%82%E6%96%B9%E6%A1%88/" title="Android音量均衡器实现：自定义垂直滑块与 EQ 调节方案">Android音量均衡器实现：自定义垂直滑块与 EQ 调节方案</a><time datetime="2025-07-14T07:15:28.000Z" title="发表于 2025-07-14 15:15:28">2025-07-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/11/%E8%87%AA%E5%AE%9A%E4%B9%89%20AqiColorView%EF%BC%9A%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E7%A9%BA%E6%B0%94%E8%B4%A8%E9%87%8F%E6%8C%87%E6%95%B0%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA/" title="自定义 AqiColorView：优雅实现空气质量指数可视化展示"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义 AqiColorView：优雅实现空气质量指数可视化展示"/></a><div class="content"><a class="title" href="/2025/07/11/%E8%87%AA%E5%AE%9A%E4%B9%89%20AqiColorView%EF%BC%9A%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E7%A9%BA%E6%B0%94%E8%B4%A8%E9%87%8F%E6%8C%87%E6%95%B0%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA/" title="自定义 AqiColorView：优雅实现空气质量指数可视化展示">自定义 AqiColorView：优雅实现空气质量指数可视化展示</a><time datetime="2025-07-11T05:40:49.000Z" title="发表于 2025-07-11 13:40:49">2025-07-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By 王大人</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
