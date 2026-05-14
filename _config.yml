@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 王大人的博客
+title: Zeke 慢笔
 subtitle: 风雨之后才会有彩虹
-description: 
-keywords:
-author: 王大人
+description: Zeke 的技术笔记，慢慢写
+keywords: Android, Kotlin, Java, 技术博客, Zeke
+author: Zeke
 language: zh-CN
 timezone: Asia/Shanghai
 
@@ -120,3 +120,8 @@ douban:
     title: '电影'
     quote: '那些在电影院看过的电影'
   timeout: 10000 
+search:
+    path: search.xml
+    field: post
+    content: true
+    format: html
